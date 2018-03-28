@@ -20,6 +20,7 @@
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     self.formatter = [[NSDateFormatter alloc]init];
+    self.formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
 }
 
 - (void)tearDown {
@@ -48,7 +49,6 @@
     XCTAssertTrue([aDateFromLastweek isSameWeekAsDate:[NSDate dateWithDaysFromNow:10]]);
     
     //Edge case 1 two days from the same week in different month.
-    self.formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss Z";
     NSDate * point1 = [self.formatter dateFromString:@"2018-02-28 20:09:00 +0530"];
     NSDate * point2 = [self.formatter dateFromString:@"2018-03-01 20:09:00 +0530"];
  
@@ -59,6 +59,21 @@
     point2 = [self.formatter dateFromString:@"2016-01-02 20:09:00 +0530"];
     
     XCTAssertTrue([point1 isSameWeekAsDate:point2]);
+}
+
+-(void)testSameMonth {
+    
+    //Case 1 two days from the same month.
+    NSDate * point1 = [self.formatter dateFromString:@"2018-02-28 20:09:00 +0530"];
+    NSDate * point2 = [self.formatter dateFromString:@"2018-03-01 20:09:00 +0530"];
+    
+    XCTAssertFalse([point1 isSameMonthAsDate:point2]);
+    
+    //Case 2 two days from the different month.
+    point1 = [self.formatter dateFromString:@"2018-02-28 20:09:00 +0530"];
+    point2 = [self.formatter dateFromString:@"2018-02-02 20:09:00 +0530"];
+    
+    XCTAssertTrue([point1 isSameMonthAsDate:point2]);
 }
 
 @end
