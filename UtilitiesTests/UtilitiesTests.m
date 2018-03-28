@@ -24,13 +24,25 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testToday{
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     
-    NSDate * today = [NSDate dateYesterday];
-    XCTAssertFalse(today.isToday);
+    NSDate * today = [NSDate date];
+    XCTAssertTrue(today.isToday);
+    XCTAssertFalse(today.isYesterday);
+//    XCTAssertFalse(today.isInPast);
+//    XCTAssertFalse(today.isInFuture);
+//    XCTAssertFalse(today.isLastWeek);
+//    XCTAssertFalse(today.isLastYear);
+//    XCTAssertFalse(today.isNextWeek);
+}
+
+-(void)testSameWeek {
     
+    NSDate * aDateFromLastweek = [NSDate dateWithDaysFromNow:8];
+    XCTAssertFalse([aDateFromLastweek isSameWeekAsDate:[NSDate date]]);
+    XCTAssertTrue([aDateFromLastweek isSameWeekAsDate:[NSDate dateWithDaysFromNow:10]]);
 }
 
 @end
