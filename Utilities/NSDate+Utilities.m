@@ -481,6 +481,18 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 	return components.week;
 }
 
+- (NSInteger) weekOfMonth
+{
+    NSDateComponents *components = [[NSDate currentCalendar] components:componentFlags fromDate:self];
+    return components.weekOfMonth;
+}
+
+- (NSInteger) weekOfYear
+{
+    NSDateComponents *components = [[NSDate currentCalendar] components:componentFlags fromDate:self];
+    return components.weekOfYear;
+}
+
 - (NSInteger) weekday
 {
 	NSDateComponents *components = [[NSDate currentCalendar] components:componentFlags fromDate:self];
