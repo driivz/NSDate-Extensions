@@ -44,13 +44,18 @@
 
 -(void)testSameWeek {
     
-    NSDate * aDateFromLastweek = [NSDate dateWithDaysFromNow:8];
-    XCTAssertFalse([aDateFromLastweek isSameWeekAsDate:[NSDate date]]);
-    XCTAssertTrue([aDateFromLastweek isSameWeekAsDate:[NSDate dateWithDaysFromNow:10]]);
+    
+    NSDate * point1 = [self.formatter dateFromString:@"2018-03-30 20:09:00 +0530"];
+    NSDate * point2 = [self.formatter dateFromString:@"2018-03-29 20:09:00 +0530"];
+    XCTAssertTrue([point1 isSameWeekAsDate:point2]);
+    
+    point1 = [self.formatter dateFromString:@"2018-03-22 20:09:00 +0530"];
+    point2 = [self.formatter dateFromString:@"2018-03-29 20:09:00 +0530"];
+    XCTAssertFalse([point1 isSameWeekAsDate:point2]);
     
     //Edge case 1 two days from the same week in different month.
-    NSDate * point1 = [self.formatter dateFromString:@"2018-02-28 20:09:00 +0530"];
-    NSDate * point2 = [self.formatter dateFromString:@"2018-03-01 20:09:00 +0530"];
+    point1 = [self.formatter dateFromString:@"2018-02-28 20:09:00 +0530"];
+    point2 = [self.formatter dateFromString:@"2018-03-01 20:09:00 +0530"];
  
     XCTAssertTrue([point1 isSameWeekAsDate:point2]);
     
