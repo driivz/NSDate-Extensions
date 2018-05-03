@@ -6,11 +6,11 @@
 
 #import <Foundation/Foundation.h>
 
-#define D_MINUTE	60
-#define D_HOUR		3600
-#define D_DAY		86400
-#define D_WEEK		604800
-#define D_YEAR		31556926
+#define D_MINUTE    60
+#define D_HOUR      3600
+#define D_DAY       86400
+#define D_WEEK      604800
+#define D_YEAR      31556926
 
 @interface NSDate (Utilities)
 + (NSCalendar *) currentCalendar; // avoid bottlenecks
@@ -41,34 +41,34 @@
 // Comparing dates
 - (BOOL) isEqualToDateIgnoringTime: (NSDate *) aDate;
 
-- (BOOL) isToday;
-- (BOOL) isTomorrow;
-- (BOOL) isYesterday;
+@property (nonatomic, getter=isToday, readonly) BOOL today;
+@property (nonatomic, getter=isTomorrow, readonly) BOOL tomorrow;
+@property (nonatomic, getter=isYesterday, readonly) BOOL yesterday;
 
 - (BOOL) isSameWeekAsDate: (NSDate *) aDate;
-- (BOOL) isThisWeek;
-- (BOOL) isNextWeek;
-- (BOOL) isLastWeek;
+@property (nonatomic, getter=isThisWeek, readonly) BOOL thisWeek;
+@property (nonatomic, getter=isNextWeek, readonly) BOOL nextWeek;
+@property (nonatomic, getter=isLastWeek, readonly) BOOL lastWeek;
 
 - (BOOL) isSameMonthAsDate: (NSDate *) aDate;
-- (BOOL) isThisMonth;
-- (BOOL) isNextMonth;
-- (BOOL) isLastMonth;
+@property (nonatomic, getter=isThisMonth, readonly) BOOL thisMonth;
+@property (nonatomic, getter=isNextMonth, readonly) BOOL nextMonth;
+@property (nonatomic, getter=isLastMonth, readonly) BOOL lastMonth;
 
 - (BOOL) isSameYearAsDate: (NSDate *) aDate;
-- (BOOL) isThisYear;
-- (BOOL) isNextYear;
-- (BOOL) isLastYear;
+@property (nonatomic, getter=isThisYear, readonly) BOOL thisYear;
+@property (nonatomic, getter=isNextYear, readonly) BOOL nextYear;
+@property (nonatomic, getter=isLastYear, readonly) BOOL lastYear;
 
 - (BOOL) isEarlierThanDate: (NSDate *) aDate;
 - (BOOL) isLaterThanDate: (NSDate *) aDate;
 
-- (BOOL) isInFuture;
-- (BOOL) isInPast;
+@property (nonatomic, getter=isInFuture, readonly) BOOL inFuture;
+@property (nonatomic, getter=isInPast, readonly) BOOL inPast;
 
 // Date roles
-- (BOOL) isTypicallyWorkday;
-- (BOOL) isTypicallyWeekend;
+@property (nonatomic, getter=isTypicallyWorkday, readonly) BOOL typicallyWorkday;
+@property (nonatomic, getter=isTypicallyWeekend, readonly) BOOL typicallyWeekend;
 
 // Adjusting dates
 - (NSDate *) dateByAddingYears: (NSInteger) dYears;
@@ -83,8 +83,8 @@
 - (NSDate *) dateBySubtractingMinutes: (NSInteger) dMinutes;
 
 // Date extremes
-- (NSDate *) dateAtStartOfDay;
-- (NSDate *) dateAtEndOfDay;
+@property (nonatomic, readonly, copy) NSDate *dateAtStartOfDay;
+@property (nonatomic, readonly, copy) NSDate *dateAtEndOfDay;
 
 // Retrieving intervals
 - (NSInteger) minutesAfterDate: (NSDate *) aDate;
